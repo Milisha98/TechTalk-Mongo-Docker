@@ -11,7 +11,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
             Console.WriteLine("Docker Demo - Lets use MongoDB");
 
             // List People
-            var client = new MongoClient("mongodb://localhost:27017");
+            var client = new MongoClient("mongodb://192.168.86.32:27017");
             var database = client.GetDatabase("MySuperiorDB");
             var collection = database.GetCollection<People>("People");
 
