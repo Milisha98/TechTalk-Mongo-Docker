@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Mongo-Docker": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
