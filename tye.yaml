@@ -1,0 +1,40 @@
+﻿name: mongo-docker-demo
+services:
+- name: mongo
+  image: mongo:latest
+  volumes:
+    - source: mongodb_data
+      target: /data/db
+  env:
+    - name: MONGO_INITDB_ROOT_USERNAME
+      value: admin
+    - name: MONGO_INITDB_ROOT_PASSWORD
+      value: pass
+  bindings:
+  - port: 27017
+    connectionString: "${env:MONGO_INITDB_ROOT_USERNAME}:${env:MONGO_INITDB_ROOT_PASSWORD}@${host}:${port}"
+    protocol: mongodb
+- name: mongo-express
+  image: mongo-express:latest
+  bindings:
+    - port: 8081
+      containerPort: 8081
+      protocol: http
+  env:
+    - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+      value: admin
+    - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+      value: pass
+    - name: ME_CONFIG_MONGODB_SERVER
+      value: mongo
+    - name: ME_CONFIG_MONGODB_PORT
+      value: 27017
+- name: my-mongo-docker
+  image: mongo-docker-demo:latest
+  bindings:
+  - port: 8080
+  env:
+    - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+      value: admin
+    - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+      value: pass

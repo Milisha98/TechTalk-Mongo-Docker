@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
-using Mongo_Docker;
+﻿using Mongo_Docker;
 using MongoDB.Driver;
+using Microsoft.Extensions.Configuration;
 
 namespace MyApp // Note: actual namespace depends on the project name.
 {
@@ -10,8 +10,15 @@ namespace MyApp // Note: actual namespace depends on the project name.
         {
             Console.WriteLine("Docker Demo - Lets use MongoDB");
 
+            IConfiguration Configuration = new ConfigurationBuilder().AddEnvironmentVariables().Build();
+            string connectionString = $"mongodb://{Configuration.GetConnectionString("my-mongo")}/";
+
+            //string connectionString = Environment.GetEnvironmentVariable("MONGODB_URL");
+            connectionString = "mongodb://admin:pass@mongo:27017/";
+            Console.WriteLine($"Connection:{connectionString}");
+
             // List People
-            var client = new MongoClient("mongodb://admin:pass@192.168.86.32:27017");
+            var client = new MongoClient(connectionString);
             var database = client.GetDatabase("MySuperiorDB");
             var collection = database.GetCollection<People>("People");
 
