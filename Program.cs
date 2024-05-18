@@ -11,7 +11,10 @@ namespace MyApp // Note: actual namespace depends on the project name.
             Console.WriteLine("Docker Demo - Lets use MongoDB");
 
             // List People
-            var client = new MongoClient("mongodb://admin:pass@192.168.86.32:27017");
+            string connectionString = "mongodb://admin:pass@192.168.86.35:27017";
+            Console.WriteLine($"Connection: {connectionString}");
+
+            var client = new MongoClient(connectionString);
             var database = client.GetDatabase("MySuperiorDB");
             var collection = database.GetCollection<People>("People");
 
