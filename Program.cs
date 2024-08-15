@@ -2,7 +2,7 @@
 using Mongo_Docker;
 using MongoDB.Driver;
 
-namespace MyApp // Note: actual namespace depends on the project name.
+namespace MyApp
 {
     internal class Program
     {
@@ -11,7 +11,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
             Console.WriteLine("Docker Demo - Lets use MongoDB");
 
             // List People
-            string connectionString = "mongodb://admin:pass@192.168.86.35:27017";
+            string connectionString = "mongodb://admin:pass@192.168.86.36:27017";
             Console.WriteLine($"Connection: {connectionString}");
 
             var client = new MongoClient(connectionString);
