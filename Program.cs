@@ -11,7 +11,7 @@ namespace MyApp
             Console.WriteLine("Docker Demo - Lets use MongoDB");
 
             // List People
-            string connectionString = "mongodb://admin:pass@192.168.86.36:27017";
+            string connectionString = "mongodb://admin:pass@host.docker.internal:27017";
             Console.WriteLine($"Connection: {connectionString}");
 
             var client = new MongoClient(connectionString);
